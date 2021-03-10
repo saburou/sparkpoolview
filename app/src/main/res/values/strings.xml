@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application1</string>
+    <string name="app_name">SparkpoolViewer</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -7,6 +7,20 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <!-- delete in future -->
     <string name="hello_first_fragment">test test test</string>
-    <string name="hello_second_fragment">日本語大丈夫ですか？</string>
+
+    <string name="title_setting_fragment">Settings</string>
+    <string name="labelServer">Server</string>
+    <string name="default_serverAddress">https://www.sparkpool.com</string>
+    <string name="hint_address">input sparkpool web api address</string>
+    <string name="labelCurrency">Currency</string>
+    <string name="text_eth">ETH</string>
+    <string name="labelMiner">Miner</string>
+    <string name="hintMiner">input your miner name in sparkpool</string>
+    <string name="text_save">save</string>
+    <string name="err_title_invalidSetting">Initialize Failed</string>
+    <string name="err_message_invalidSetting">Check your settings.</string>
+    <string name="text_ok">OK</string>
+    <string name="name_preference">pref</string>
 </resources>
