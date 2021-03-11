@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.myapplication1.io.SettingsReader;
+import com.example.myapplication1.io.SettingsWriter;
 import com.example.myapplication1.model.Currency;
 
 import androidx.annotation.NonNull;
@@ -19,7 +21,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication1.model.Settings;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class SettingFragment extends Fragment {
@@ -84,47 +85,29 @@ public class SettingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public Settings load() {
+    protected Settings load() {
         SharedPreferences pref = this.getActivity().getSharedPreferences(getString(R.string.name_preference), Context.MODE_PRIVATE);
-        // server address
-        String address = pref.getString(getResources().getString(R.string.labelServer), getResources().getString(R.string.default_serverAddress));
-        // currency
-        String currency = pref.getString(getResources().getString(R.string.labelCurrency), getResources().getString(R.string.text_eth));
-        // miner
-        String miner = pref.getString(getResources().getString(R.string.labelMiner), "");
-
-        // init
-        try {
-            return new Settings(address, currency, miner);
-        } catch (MalformedURLException e) {
-            // Each Values have default value so normally any exceptions will not occur.
-            e.printStackTrace();
-            return new Settings();
-        }
+        return SettingsReader.read(pref, getResources());
     }
 
-    public void save() {
+    protected void save() {
         SharedPreferences pref = this.getActivity().getSharedPreferences(getString(R.string.name_preference), Context.MODE_PRIVATE);
         Editor editor = pref.edit();
-        // server address
+        // get server address
         EditText textServer = (EditText) view.findViewById(R.id.editTextServer);
         String server = textServer.getText().toString();
-        editor.putString(getResources().getString(R.string.labelServer), server);
-        // currency
+        // get currency
         Spinner spinner = (Spinner) view.findViewById(R.id.spinnerCurrency);
         Currency currency = Currency.values()[spinner.getSelectedItemPosition()];
-        editor.putString(getResources().getString(R.string.labelCurrency), currency.name());
-        // miner
+        // get miner
         EditText textMiner = (EditText) view.findViewById(R.id.editTextMiner);
         String miner = textMiner.getText().toString();
-        editor.putString(getResources().getString(R.string.labelMiner), miner);
-
-        // commit settings
-        boolean saved = editor.commit();
+        // write preferences
+        boolean saved = SettingsWriter.write(pref, getResources(), server, currency.name(), miner);
         if (saved) {
-            Toast.makeText(getActivity().getApplicationContext(), "settings saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.message_save_success), Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getActivity().getApplicationContext(), "save failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.message_save_failed), Toast.LENGTH_LONG).show();
         }
     }
 }

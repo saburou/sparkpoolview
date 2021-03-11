@@ -1,5 +1,15 @@
 package com.example.myapplication1.model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.example.myapplication1.R;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;

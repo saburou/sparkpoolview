@@ -23,4 +23,19 @@
     <string name="err_message_invalidSetting">Check your settings.</string>
     <string name="text_ok">OK</string>
     <string name="name_preference">pref</string>
+    <string name="text_poolstatus">PoolStatus</string>
+    <string name="text_currency">Currency</string>
+    <string name="text_poolhashrate">PoolHashrate</string>
+    <string name="text_networkhashrate">NetworkHashrate</string>
+    <string name="text_income24h">Income24H</string>
+    <string name="text_difficulty">Difficulty</string>
+    <string name="text_usd">USD</string>
+    <string name="text_minerstatus">MinerStatus</string>
+    <string name="text_username">username</string>
+    <string name="text_hashrate24h">Hashrate24H</string>
+    <string name="text_validshares">ValidShares</string>
+    <string name="text_staleshares">StaleShares</string>
+    <string name="text_invalidshares">InvalidShares</string>
+    <string name="message_save_success">"settings saved"</string>
+    <string name="message_save_failed">"save failed"</string>
 </resources>
