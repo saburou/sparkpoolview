@@ -10,6 +10,7 @@
     <!-- delete in future -->
     <string name="hello_first_fragment">test test test</string>
 
+    <string name="path_pool_status">/v1/currency/stats</string>
     <string name="title_setting_fragment">Settings</string>
     <string name="labelServer">Server</string>
     <string name="default_serverAddress">https://www.sparkpool.com</string>
@@ -38,4 +39,5 @@
     <string name="text_invalidshares">InvalidShares</string>
     <string name="message_save_success">"settings saved"</string>
     <string name="message_save_failed">"save failed"</string>
+    <string name="message_load_settings_failed">"load settings failed"</string>
 </resources>

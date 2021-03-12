@@ -5,10 +5,11 @@ import androidx.annotation.NonNull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class SparkpoolAPI extends WebAPI {
+public class SparkpoolAPI extends AbstractWebAPI {
 
     public SparkpoolAPI(String host) {
         super(host, DEFAULT_TIMEOUT, DEFAULT_TIMEOUT, DEFAULT_AGENT);
@@ -20,6 +21,7 @@ public class SparkpoolAPI extends WebAPI {
         HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
         con.setConnectTimeout(super.connectionTimeout);
         con.setReadTimeout(super.readTimeout);
+        con.addRequestProperty("Accept-Language", Locale.getDefault().toString());
         con.addRequestProperty(PROP_USER_AGENT, super.agent);
         return con;
     }
@@ -28,8 +30,9 @@ public class SparkpoolAPI extends WebAPI {
     public String get(@NonNull String path) throws IOException {
         HttpsURLConnection con = open(path);
         con.setRequestMethod(REQUEST_METHOD_GET);
-        con.setDoOutput(true);
+        con.setDoOutput(false);
         con.setDoInput(true);
+        con.setUseCaches(false);
         con.connect();
         int status = con.getResponseCode();
         if (status != HttpsURLConnection.HTTP_OK) {
